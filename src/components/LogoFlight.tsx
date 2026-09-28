@@ -95,13 +95,19 @@ export function LogoFlight() {
         const destY = dest.top + dest.height / 2;
         const x = startX + (destX - startX) * travel;
         const y = startY + (destY - startY) * travel;
-        const width = Number(el.dataset.sw) + (Number(el.dataset.ew) - Number(el.dataset.sw)) * travel;
-        const height = Number(el.dataset.sh) + (Number(el.dataset.eh) - Number(el.dataset.sh)) * travel;
+        const endW = dest.width || Number(el.dataset.ew);
+        const endH = dest.height || Number(el.dataset.eh);
+        const width = Number(el.dataset.sw) + (endW - Number(el.dataset.sw)) * travel;
+        const height = Number(el.dataset.sh) + (endH - Number(el.dataset.sh)) * travel;
         el.style.width = `${width}px`;
         el.style.height = `${height}px`;
         el.style.transform = `translate3d(${x - width / 2}px, ${y - height / 2}px, 0)`;
         const word = el.querySelector<HTMLElement>(".logo-word");
-        if (word) word.style.fontSize = `${Math.max(14, height * 0.38)}px`;
+        if (word) {
+          const startSize = Number(el.dataset.sh) * 0.38;
+          const endSize = 16;
+          word.style.fontSize = `${startSize + (endSize - startSize) * travel}px`;
+        }
       }
     };
 

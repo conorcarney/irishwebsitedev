@@ -10,7 +10,6 @@ const links = [
   { href: "/about", label: "About" },
   { href: "/showcases", label: "Showcases" },
   { href: "/fees", label: "Fees" },
-  { href: "/contact", label: "Contact" },
 ];
 
 export function SiteHeader() {
@@ -31,7 +30,7 @@ export function SiteHeader() {
   }, [pathname]);
 
   return (
-    <header className="site-header fixed inset-x-0 top-0 z-40 text-ink">
+    <header data-consent-lock className="site-header fixed inset-x-0 top-0 z-40 text-ink">
       <div className="site-header-bar">
       <div className="mx-auto flex w-full max-w-6xl flex-wrap items-center justify-between gap-x-6 gap-y-3">
         <Link href="/" className="nav-link text-[15px] font-semibold tracking-tight">

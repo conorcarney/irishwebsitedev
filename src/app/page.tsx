@@ -7,9 +7,12 @@ import { showcases } from "@/data/showcases";
 import { site } from "@/data/site";
 
 const flightLogos: Record<string, string> = {
-  ahbegrand: "/logos/ahbegrand.png",
   "trip-farm": "/logos/tripfarm.png",
   "shore-farm-pony-therapy": "/logos/shorefarm.jpg",
+};
+
+const stillLogos: Record<string, { src: string; fill?: boolean }> = {
+  "travel-to-turkmenistan": { src: "/logos/turkmenistan.png", fill: true },
 };
 
 export const metadata: Metadata = {
@@ -34,11 +37,14 @@ export default function HomePage() {
               {site.title}
             </p>
             <h1 className="mt-5 max-w-3xl text-5xl font-medium leading-[1.02] tracking-tight text-balance md:text-7xl">
-              We build bespoke websites for Small Businesses in Ireland and Abroad.
+              We build custom websites for small business's, events, and startups, primarily in Ireland.
             </h1>
             <p className="mt-6 max-w-xl text-lg leading-relaxed text-white/85">
-             In an online world of AI, make your business stand out. All our websites are bespoke, customised to what you want. 
-             Check out the Showcases page for examples.
+              In an online world of AI, make your business stand out. All our websites are bespoke, customised to what you want.
+              Check out the Showcases page for examples.
+            </p>
+            <p className="mt-6 max-w-xl text-lg leading-relaxed text-white/85">
+              We build anything from simple business information, to product and sales, including payments, to event booking, to subscription based websites.
             </p>
             <div className="mt-8 flex flex-wrap gap-3">
               <Link
@@ -51,7 +57,7 @@ export default function HomePage() {
                 href="/contact"
                 className="motion-fade rounded-full bg-white px-5 py-3 text-sm font-medium text-ink"
               >
-              Get in touch to start building your dream website
+                Get in touch to start building your dream website
               </Link>
             </div>
           </div>
@@ -72,6 +78,7 @@ export default function HomePage() {
           {showcases.map((item, index) => {
             const host = new URL(item.url).host.replace(/^www\./, "");
             const logo = flightLogos[item.id];
+            const still = stillLogos[item.id];
             return (
               <li key={item.id}>
                 <Link
@@ -80,9 +87,21 @@ export default function HomePage() {
                 >
                   <p className="text-xs text-muted">{String(index + 1).padStart(2, "0")}</p>
                   <div className="mt-3 flex items-center gap-3">
-                    {logo ? (
+                    {item.id === "ahbegrand" ? (
+                      <span data-logo-anchor={item.id} className="logo-slot logo-slot-word" aria-hidden="true">
+                        <span className="logo-word">AhBeGrand</span>
+                      </span>
+                    ) : logo ? (
                       <span data-logo-anchor={item.id} className="logo-slot" aria-hidden="true">
                         <img src={logo} alt="" className="logo-slot-still" />
+                      </span>
+                    ) : still ? (
+                      <span className="logo-slot" aria-hidden="true">
+                        <img
+                          src={still.src}
+                          alt=""
+                          className={still.fill ? "logo-slot-still is-fill" : "logo-slot-still"}
+                        />
                       </span>
                     ) : null}
                     <p className="text-2xl font-medium tracking-tight">{item.name}</p>

@@ -18,6 +18,8 @@ export default function AboutPage() {
         <p> Through these years, I've built sites for events, SME's, start ups, and even large commercial ecommerce sites that handle thousands of users and millions in revenue.
           I use a mix of different tech for different websites adapting to each customers individual needs.
         </p>
+        <p> Other hobbies outside of website building? Maps, vexology seeing a bit of the world, long distance running, language learning and Gaelic Games.
+        </p>
         <p>
           <Link href="/showcases" className="text-pine underline-offset-4 hover:underline">
             See the other sites

@@ -44,7 +44,7 @@ export async function sendMessage(
   }
 
   const resend = new Resend(apiKey);
-  const from = process.env.RESEND_FROM ?? "irishwebsitedev <onboarding@resend.dev>";
+  const from = process.env.RESEND_FROM ?? "irishwedeveloper <onboarding@resend.dev>";
   const { error } = await resend.emails.send({
     from,
     to: site.email,
