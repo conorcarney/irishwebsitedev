@@ -1,6 +1,6 @@
 /** Public identity. `name` is the wordmark in the header and page titles. */
 export const site = {
-  name: "irishwedeveloper",
+  name: "irishwebdeveloper",
   title: "Freelance web developer",
   description:
     "Websites for small businesses. Preview live sites, read starting fees, and send a project note.",
