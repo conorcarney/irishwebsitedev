@@ -12,7 +12,7 @@ export default function ContactPage() {
   return (
     <div className="mx-auto w-full max-w-6xl px-5 pb-20 pt-40 md:py-28">
       <PageHeader eyebrow="Projects" title="Contact">
-        Write a note about the site you need. The form sends it to {site.email}.
+        Write a note about the website you need and we'll arrange a consultation
       </PageHeader>
       <ContactForm />
     </div>
