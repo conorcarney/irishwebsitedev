@@ -53,10 +53,20 @@ export function PageTransition({ children }: { children: React.ReactNode }) {
         }
       };
 
+      let started = false;
+      const navigate = async () => {
+        started = true;
+        await go();
+      };
+
       try {
-        document.startViewTransition(go);
+        const transition = document.startViewTransition(navigate);
+        transition.ready.catch(() => {
+          if (!started) router.push(destination);
+        });
+        transition.finished.catch(() => {});
       } catch {
-        router.push(destination);
+        if (!started) router.push(destination);
       }
     };
 

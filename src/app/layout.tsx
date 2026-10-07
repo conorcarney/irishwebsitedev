@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Geist } from "next/font/google";
+import { cookies } from "next/headers";
 import Script from "next/script";
 import { CookieConsent } from "@/components/CookieConsent";
 import { PageTransition } from "@/components/PageTransition";
@@ -22,13 +23,21 @@ export const metadata: Metadata = {
   description: site.description,
 };
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const choice = (await cookies()).get("cookie-consent")?.value;
+  const remembered = choice === "accepted" || choice === "rejected";
+
   return (
-    <html lang="en" className={`${geist.variable} h-full antialiased`}>
+    <html
+      lang="en"
+      className={`${geist.variable} h-full antialiased`}
+      data-consent={remembered ? "set" : undefined}
+      suppressHydrationWarning
+    >
       <body className="flex min-h-full flex-col bg-paper">
         <Script id="cookie-consent-boot" strategy="beforeInteractive">
           {`try{var v=localStorage.getItem("cookie-consent");if(v==="accepted"||v==="rejected")document.documentElement.dataset.consent="set";}catch(e){}`}

@@ -24,28 +24,28 @@ export const fees: FeeRow[] = [
     service: "Business/Event Information site with contact page",
     includes:
       "The site, plus a photo gallery, a contact page containing a map, and an enquiry form that emails you.",
-    fee: "€1,800",
+    fee: "€1,499",
     time: "1-2 weeks",
   },
   {
     service: "Business/Event website with online payments",
     includes:
       "The above, with an online payment portal included.",
-    fee: "€2000-2500",
+    fee: "€1999-2500",
     time: "1-2 weeks",
   },
   {
     service: "Business/Event website with payment portal, date/time booking system",
     includes:
       "The above, with an online payment portal, and google calendar integration included.",
-    fee: "€2500-5000",
+    fee: "€2499-5000",
     time: "2 weeks+",
   },
   {
     service: "Business full ecommerce website",
     includes:
       "The above, with an online payment portal, including product listings, customer information, google analytics, payment methods.",
-    fee: "€5000+",
+    fee: "€4999+",
     time: "1month+",
   },
   {

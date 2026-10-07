@@ -13,6 +13,15 @@ function rememberedChoice() {
   }
 }
 
+function persistChoice(value: "accepted" | "rejected") {
+  try {
+    localStorage.setItem(STORAGE_KEY, value);
+  } catch {
+    /* The choice still applies for this view if storage is blocked. */
+  }
+  document.cookie = `${STORAGE_KEY}=${value}; Path=/; Max-Age=31536000; SameSite=Lax`;
+}
+
 function lockPage(locked: boolean) {
   document.querySelectorAll<HTMLElement>("[data-consent-lock]").forEach((el) => {
     if (locked) el.setAttribute("inert", "");
@@ -24,7 +33,9 @@ export function CookieConsent() {
   const rejectRef = useRef<HTMLButtonElement>(null);
 
   useLayoutEffect(() => {
-    if (rememberedChoice()) {
+    const remembered = rememberedChoice();
+    if (remembered) {
+      persistChoice(remembered);
       document.documentElement.dataset.consent = "set";
       lockPage(false);
       return;
@@ -63,11 +74,7 @@ export function CookieConsent() {
   }, []);
 
   function choose(value: "accepted" | "rejected") {
-    try {
-      localStorage.setItem(STORAGE_KEY, value);
-    } catch {
-      /* The choice still applies for this view if storage is blocked. */
-    }
+    persistChoice(value);
     document.documentElement.dataset.consent = "set";
     lockPage(false);
     document.querySelector<HTMLElement>("header a")?.focus();
